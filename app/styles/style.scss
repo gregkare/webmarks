@@ -1,15 +1,18 @@
 $baseFontFamily: 'Open Sans', sans-serif;
 
-body {
+@import "bootstrap-sass/lib/bootstrap";
+
+#content {
   padding-top: 60px;
 }
 
-@import "bootstrap-sass/lib/bootstrap";
-
 #remotestorage-connect {
   position: relative;
+  width: 940px;
+  margin: 0 auto;
 }
 
 #remotestorage-widget {
   top: 0 !important;
+  right: 0 !important;
 }

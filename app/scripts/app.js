@@ -3,6 +3,10 @@
 (function (window) {
   var App = window.App = Ember.Application.create();
 
+  if (window.location.hash.match(/#access_token=.+/)) {
+    App.deferReadiness();
+  }
+
   App.Router.map(function () {
     // put your routes here
   });
@@ -17,10 +21,16 @@
     name: "remoteStorage",
 
     initialize: function(container, application) {
+
       $(function(){
         remoteStorage.claimAccess({bookmarks: "rw"});
-        remoteStorage.displayWidget('remotestorage-connect');
+        remoteStorage.displayWidget('remotestorage-connect', { redirectUri: window.location.href });
       });
     }
+  });
+
+  remoteStorage.on('ready', function() {
+    console.log("widget ready");
+    App.advanceReadiness();
   });
 })(this);

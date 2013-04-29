@@ -69,6 +69,17 @@ remoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
 
     archive: {
 
+      getAll: function() {
+        return privateClient.getAll('archive/', 'archive-bookmark').then(
+          function(bookmarks) {
+            console.log(bookmarks);
+            return bookmarks;
+          },
+          function(error) {
+            console.log("Something bad happened: ", error);
+          });
+      },
+
       store: function(bookmark) {
         bookmark.id = urlHash(bookmark.url);
         path = "archive/" + bookmark.id;
@@ -79,7 +90,9 @@ remoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
           });
       }
 
-    }
+    },
+
+    client: privateClient
 
   };
 
