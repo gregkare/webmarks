@@ -16,3 +16,14 @@ $baseFontFamily: 'Open Sans', sans-serif;
   top: 0 !important;
   right: 0 !important;
 }
+
+ul.bookmark-list {
+  li {
+    p.meta {
+      font-size: 13px;
+      span.domain {
+        color: #888;
+      }
+    }
+  }
+}

@@ -1,7 +1,13 @@
 App.Bookmark = DS.Model.extend({
   url:   DS.attr('string'),
   title: DS.attr('string'),
-  description: DS.attr('string')
+  description: DS.attr('string'),
+
+  domain: function() {
+    var a = document.createElement('a');
+    a.href = this.get('url');
+    return a.hostname;
+  }.property('url')
 });
 
 var normalizeBookmarkObjects = function(bookmark) {

@@ -3,10 +3,13 @@
 </div>
 
 <div class="hero-unit">
-  <ul>
+  <ul class="bookmark-list">
   {{#each item in model}}
     <li>
     <h3><a {{bindAttr href="item.url"}}>{{item.title}}</a></h3>
+    <p class="meta">
+      <span class="domain">{{item.domain}}<span>
+    </p>
     <p>{{item.description}}</p>
     </li>
   {{/each}}
