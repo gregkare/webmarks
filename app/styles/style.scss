@@ -1,6 +1,14 @@
 $baseFontFamily: 'Open Sans', sans-serif;
+$linkColor: #259C66;
+$linkColorHover: darken($linkColor, 5%);
+// $navbarBackground: #259C66;
+// $navbarBackgroundHighlight: #259C66;
 
 @import "bootstrap-sass/lib/bootstrap";
+
+// body {
+//   background: #F1F9F6;
+// }
 
 #content {
   padding-top: 60px;
@@ -17,13 +25,30 @@ $baseFontFamily: 'Open Sans', sans-serif;
   right: 0 !important;
 }
 
-ul.bookmark-list {
-  li {
+.bookmark-list {
+  padding-top: 60px;
+  .bookmark {
+    margin-top: 40px;
+  }
+  .screenshot {
+    margin-right: 30px;
+    img {
+      background: #efefef;
+      width: 100px;
+      height: 80px;
+    }
+  }
+  h4.media-heading {
+    padding-top: 4px;
+    font-size: 24px;
+  }
+  .media-body {
     p.meta {
+      color: #888;
       font-size: 13px;
-      span.domain {
-        color: #888;
-      }
+    }
+    p.description {
+      margin-bottom: 0;
     }
   }
 }
