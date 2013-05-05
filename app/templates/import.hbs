@@ -2,7 +2,7 @@
   <h3>Import from Delicious</h3>
   <p>You can import all your bookmarks from Delicious.com including tags and descriptions in 2 simple steps:</p>
   {{#if isImporting}}
-  <p>{{linksToImport}} links to import</p>
+  <p>Importing...</p>
   {{else}}
   <p>{{view App.ImportFileView name="delicious" contentBinding="content"}}</p>
   {{/if}}

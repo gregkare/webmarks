@@ -12,7 +12,16 @@
     <body>
         <div id="remotestorage-connect"></div>
 
+        <script>
+          window.define = function(factory) {
+            try{ delete window.define; } catch(e){ window.define = void 0; } // IE
+            window.when = factory();
+          };
+          window.define.amd = {};
+        </script>
+
         <!-- build:js scripts/components.js -->
+        <script src="components/when/when.js"></script>
         <script src="components/jquery/jquery.js"></script>
         <script src="components/handlebars/handlebars.runtime.js"></script>
         <script src="components/ember/ember.js"></script>

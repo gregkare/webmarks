@@ -11,42 +11,46 @@ App.ImportController = Ember.Controller.extend({
     var deliciousLinks = $('#import-delicious-html').find('dt a');
     self.set('linksToImport', deliciousLinks.length);
 
-    deliciousLinks.each(function(index, element){
-      a = $(element);
-      var description = null;
-      var tags = null;
+    when(deliciousLinks.each( function(index, element) {
 
-      if (a.parent().next().is('dd')) {
-        description = $(a).parent().next().text();
-      }
-      if (a.attr('TAGS')) {
-        tags = a.attr('TAGS').split(',');
-      }
-
-      App.Bookmark.createRecord({
-        url: a.attr('href'),
-        title: a.text(),
-        description: description
-        // tags: tags,
-        // createdAt: moment.unix(a.attr('ADD_DATE')).format()
+      when(self.importLink(element)).then( function() {
+        self.decrementProperty('linksToImport', 1);
       });
 
-      self.set('linksToImport', self.get('linksToImport') - 1);
-
-      if (self.get('linksToImport') === 0) {
-        self.set('isImporting', false);
-        $('#import-delicious-html').html('');
-        self.transitionToRoute('bookmarks');
-      }
+    })).then( function() {
+      self.set('isImporting', false);
+      $('#import-delicious-html').html('');
+      self.transitionToRoute('bookmarks');
     });
   },
+
+  importLink: function(linkEl) {
+    a = $(linkEl);
+    var description = null;
+    var tags = null;
+
+    if (a.parent().next().is('dd')) {
+      description = $(a).parent().next().text();
+    }
+    if (a.attr('TAGS')) {
+      tags = a.attr('TAGS').split(',');
+    }
+
+    App.Bookmark.createRecord({
+      url: a.attr('href'),
+      title: a.text(),
+      description: description
+      // tags: tags,
+      // createdAt: moment.unix(a.attr('ADD_DATE')).format()
+    });
+  },
+
+  // Helpers
 
   cleanDeliciousHTML: function(htmlString) {
     return htmlString
       .replace(/<button>/g, '&lt;button&gt;');
   },
-
-  // Helpers
 
   htmlEscape: function(str) {
     return String(str)
