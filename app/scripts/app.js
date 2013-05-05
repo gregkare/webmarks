@@ -12,23 +12,6 @@
     adapter: 'DS.BasicAdapter'
   });
 
-  App.Router.map(function () {
-    this.resource('bookmarks');
-  });
-
-  App.IndexRoute = Ember.Route.extend({
-    redirect: function() {
-      this.transitionTo('bookmarks');
-    }
-  });
-
-  App.BookmarksRoute = Ember.Route.extend({
-    model: function () {
-      //TODO Use listView for bookmarks lists https://github.com/emberjs/list-view
-      return App.Bookmark.find();
-    }
-  });
-
   App.initializer({
     name: "remoteStorage",
 
@@ -37,12 +20,18 @@
       $(function(){
         remoteStorage.claimAccess({bookmarks: "rw"});
         remoteStorage.displayWidget('remotestorage-connect', { redirectUri: window.location.href });
+
+        // html2canvas( [ document.body ], {
+        //   onrendered: function(canvas) {
+        //     document.body.appendChild( canvas );
+        //   }
+        // });
       });
     }
   });
 
   remoteStorage.on('ready', function() {
-    console.log("widget ready");
+    // console.log("widget ready");
     App.advanceReadiness();
   });
 })(this);

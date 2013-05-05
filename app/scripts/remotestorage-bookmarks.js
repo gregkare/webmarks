@@ -23,6 +23,10 @@ remoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
     "title": {
       "type": "string",
       "required": true
+    },
+    "createdAt": {
+      "type": "time",
+      "default": null
     }
   };
 
@@ -36,6 +40,11 @@ remoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
       "tags": {
         "type": "array",
         "default": []
+      },
+      "thumbnail": {
+        "description": "A base64-encoded screenshot of the bookmarked page",
+        "type": "string",
+        "default": null
       }
     }, baseProperties)
   });

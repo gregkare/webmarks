@@ -23,10 +23,12 @@ $linkColorHover: darken($linkColor, 5%);
 #remotestorage-widget {
   top: 0 !important;
   right: 0 !important;
+  //FIXME must be fixed if navbar stays fixed
 }
 
 .bookmark-list {
   padding-top: 60px;
+  padding-bottom: 100px;
   .bookmark {
     margin-top: 40px;
   }
@@ -39,8 +41,8 @@ $linkColorHover: darken($linkColor, 5%);
     }
   }
   h4.media-heading {
-    padding-top: 4px;
     font-size: 24px;
+    line-height: 1.2em;
   }
   .media-body {
     p.meta {
@@ -51,4 +53,13 @@ $linkColorHover: darken($linkColor, 5%);
       margin-bottom: 0;
     }
   }
+}
+
+.import-container {
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+#import-delicious-html {
+  display: none;
 }
