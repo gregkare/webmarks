@@ -1,21 +1,15 @@
 App.ImportController = Ember.Controller.extend({
 
   isImporting: false,
-  linksToImport: 0,
 
   importDeliciousFile: function(fileContent) {
     self = this;
     self.set('isImporting', true);
     $('#import-delicious-html').append(self.cleanDeliciousHTML(fileContent));
 
-    var deliciousLinks = $('#import-delicious-html').find('dt a');
-    self.set('linksToImport', deliciousLinks.length);
+    when($('#import-delicious-html').find('dt a').each( function(index, element) {
 
-    when(deliciousLinks.each( function(index, element) {
-
-      when(self.importLink(element)).then( function() {
-        self.decrementProperty('linksToImport', 1);
-      });
+      self.importLink(element);
 
     })).then( function() {
       self.set('isImporting', false);
@@ -26,7 +20,7 @@ App.ImportController = Ember.Controller.extend({
 
   importLink: function(linkEl) {
     a = $(linkEl);
-    var description = null;
+    var description = '';
     var tags = null;
 
     if (a.parent().next().is('dd')) {
@@ -36,13 +30,15 @@ App.ImportController = Ember.Controller.extend({
       tags = a.attr('TAGS').split(',');
     }
 
-    App.Bookmark.createRecord({
+    record = App.Bookmark.createRecord({
       url: a.attr('href'),
       title: a.text(),
-      description: description
+      description: description,
       // tags: tags,
-      // createdAt: moment.unix(a.attr('ADD_DATE')).format()
+      createdAt: moment.unix(a.attr('ADD_DATE')).format()
     });
+
+    this.get('store').commit();
   },
 
   // Helpers

@@ -33,8 +33,8 @@
   App.ApplicationView = Ember.View.extend({
     currentPathDidChange: function() {
       Ember.run.next( this, function() {
-        this.$("ul.nav li:has(>a.active)").addClass('active');
-        this.$("ul.nav li:not(:has(>a.active))").removeClass('active');
+        this.$(".pure-menu ul li:has(>a.active)").addClass('pure-menu-selected');
+        this.$(".pure-menu ul li:not(:has(>a.active))").removeClass('pure-menu-selected');
       });
     }.observes('controller.currentPath')
   });

@@ -1,15 +1,19 @@
-<ul class="media-list bookmark-list">
+<ul class="bookmark-list">
   {{#each item in model}}
-    <li class="media bookmark">
-    <a class="pull-left screenshot" href="#">
-      <img class="media-object" alt="">
-    </a>
-    <div class="media-body">
-      <h4 class="media-heading">
+    <li class="bookmark pure-g-r">
+    <div class="pure-u-1-6">
+      <a class="screenshot" href="#">
+        <img class="media-object" alt="">
+      </a>
+    </div>
+    <div class="body pure-u-5-6">
+      <h4 class="heading">
         <a {{bindAttr href="item.url"}}>{{item.title}}</a>
       </h4>
       <p class="meta">
         <span class="domain">{{item.domain}}<span>
+        &middot;
+        <span class="date"> {{item.createdAt}}<span>
       </p>
       <p class="description">{{item.description}}</p>
     </div>
