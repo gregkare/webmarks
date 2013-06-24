@@ -43,4 +43,13 @@
     // console.log("widget ready");
     App.advanceReadiness();
   });
+
+  window.onscroll = function(){
+    console.log("scroll");
+    if (document.documentElement.scrollTop > 50) {
+      $('.header .pure-menu').addClass('transparent');
+    } else {
+      $('.header .pure-menu').removeClass('transparent');
+    }
+  };
 })(this);
