@@ -7,9 +7,14 @@
   App.deferReadiness();
   // }
 
+  // App.Store = DS.Store.extend({
+  //   revision: 12,
+  //   adapter: 'DS.BasicAdapter'
+  // });
+
   App.Store = DS.Store.extend({
     revision: 12,
-    adapter: 'DS.BasicAdapter'
+    adapter: DS.RSAdapter.create()
   });
 
   App.initializer({
@@ -45,7 +50,6 @@
   });
 
   window.onscroll = function(){
-    console.log("scroll");
     if (document.documentElement.scrollTop > 50) {
       $('.header .pure-menu').addClass('transparent');
     } else {
