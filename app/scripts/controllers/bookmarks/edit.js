@@ -1,17 +1,16 @@
-App.BookmarksEditController = Ember.ObjectController.extend({
+App.BookmarksNewController = Ember.ObjectController.extend({
 
-  url: null,
-  title: null,
-  description: null,
-  tags: null,
+  // url: null,
+  // title: null,
+  // description: null,
+  // tags: null,
 
-  save: function() {
-    this.id = this.id || remoteStorage.bookmarks.archive.idForUrl(this.url);
-    this.createdAt = this.createdAt || new Date();
-    this.get('store').commit();
-    this.redirectTo('bookmarks');
+  commit: function() {
+    console.log(this.content.toJSON);
+    // this.save();
+    // this.redirectTo('bookmarks');
   }
 
 });
 
-App.BookmarksNewController = App.BookmarksEditController.extend();
+App.BookmarksEditController = App.BookmarksNewController.extend();

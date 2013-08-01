@@ -1,7 +1,10 @@
 /*global Ember */
 
 (function (window) {
-  var App = window.App = Ember.Application.create();
+  var App = window.App = Ember.Application.create({
+    LOG_TRANSITIONS: true,
+    LOG_ACTIVE_GENERATION: true
+  });
 
   // if (window.location.hash.match(/#access_token=.+/)) {
   App.deferReadiness();
@@ -12,10 +15,10 @@
   //   adapter: 'DS.BasicAdapter'
   // });
 
-  App.Store = DS.Store.extend({
-    revision: 12,
-    adapter: DS.RSAdapter.create()
-  });
+  // App.Store = DS.Store.extend({
+  //   revision: 12,
+  //   adapter: DS.RSAdapter.create()
+  // });
 
   App.initializer({
     name: "remoteStorage",

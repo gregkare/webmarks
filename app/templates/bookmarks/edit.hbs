@@ -1,10 +1,11 @@
 <h2>Add a new bookmark</h2>
 
 {{url}}
-{{isNew}}
+{{domain}}
+{{isDirty}}
 {{isValid}}
 
-<form {{action save on="submit"}}>
+<form {{action commit on="submit"}}>
   <p>
     <label for="url">URL</label><br>
     {{view Ember.TextField valueBinding="url" id="url"}}
