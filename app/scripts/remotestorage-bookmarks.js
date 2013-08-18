@@ -2,7 +2,7 @@
 // Bookmarks
 //
 
-remoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
+RemoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
 
   var extend = remoteStorage.util.extend;
   var md5; //TODO add some hashing function to remoteStorage.util
