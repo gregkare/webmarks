@@ -15,7 +15,6 @@
   App.deferReadiness();
   // }
 
-
   App.initializer({
     name: "remoteStorage",
 
