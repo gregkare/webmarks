@@ -15,15 +15,6 @@
   App.deferReadiness();
   // }
 
-  // App.Store = DS.Store.extend({
-  //   revision: 12,
-  //   adapter: 'DS.BasicAdapter'
-  // });
-
-  // App.Store = DS.Store.extend({
-  //   revision: 12,
-  //   adapter: DS.RSAdapter.create()
-  // });
 
   App.initializer({
     name: "remoteStorage",
@@ -53,7 +44,6 @@
   });
 
   remoteStorage.on('ready', function() {
-    // console.log("widget ready");
     App.advanceReadiness();
   });
 
