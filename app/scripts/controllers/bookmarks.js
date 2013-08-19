@@ -1,4 +1,1 @@
-App.BookmarksController = Ember.ArrayController.extend({
-
-
-});
+App.BookmarksController = Ember.ArrayController.extend();

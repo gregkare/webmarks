@@ -16,6 +16,8 @@
         <span class="date">{{item.createdAt}}<span>
         &middot;
         {{item.id}}
+        &middot;
+        {{#linkTo "bookmarks.edit" item}}edit{{/linkTo}}
         {{#if item.tags}}
           &middot; {{item.tags}}
         {{/if}}

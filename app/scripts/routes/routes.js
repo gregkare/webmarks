@@ -1,6 +1,7 @@
 App.Router.map(function () {
   this.resource('bookmarks', { path: '/bookmarks' }, function() {
     this.route('new');
+    this.route('edit', {path: 'edit/:bookmark_id'});
   });
   this.route('import', { path: "/import" });
 });
@@ -26,5 +27,11 @@ App.BookmarksNewRoute = Ember.Route.extend({
 
   model: function() {
     return App.Bookmark.create();
+  }
+});
+
+App.BookmarksEditRoute = Ember.Route.extend({
+  model: function() {
+    return App.Bookmark.find(params.bookmark_id);
   }
 });

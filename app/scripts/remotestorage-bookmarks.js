@@ -78,6 +78,14 @@ RemoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
 
     archive: {
 
+      find: function(id) {
+        var path = "archive/" + id;
+
+        return privateClient.getObject(path).then(function(bookmark){
+          return bookmark;
+        });
+      },
+
       getAll: function() {
         return privateClient.getAll('archive/').then(
         // return privateClient.getAll('archive/', 'archive-bookmark').then(

@@ -14,9 +14,22 @@ App.Bookmark = Ember.Model.extend({
 
 App.Bookmark.adapter = Ember.Adapter.create({
 
+  find: function(record, id) {
+    self = this;
+
+    return remoteStorage.bookmarks.archive.find(id).then(function(data){
+      self.didFind(record, id, data);
+      return record;
+    });
+  },
+
+  didFind: function(record, id, data) {
+    record.load(id, data);
+  },
+
   findAll: function(klass, records) {
     var self = this;
-    remoteStorage.bookmarks.archive.getAll().then(function(bookmarks){
+    return remoteStorage.bookmarks.archive.getAll().then(function(bookmarks){
       self.didFindAll(klass, records, bookmarks);
     });
   },
