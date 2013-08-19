@@ -65,5 +65,16 @@ App.Bookmark.adapter = Ember.Adapter.create({
     record.didSaveRecord();
   },
 
+  deleteRecord: function(record) {
+    self = this;
+
+    remoteStorage.bookmarks.archive.remove(record.id).then(function(data){
+      self.didDeleteRecord(record);
+    });
+  },
+
+  didDeleteRecord: function(record) {
+    record.didDeleteRecord();
+  }
 
 });

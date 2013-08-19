@@ -113,6 +113,12 @@ RemoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
           });
       },
 
+      remove: function(id) {
+        var path = "archive/" + id;
+
+        return privateClient.remove(path);
+      },
+
       idForUrl: function(url) {
         return urlHash(url);
       }

@@ -18,6 +18,8 @@
         {{item.id}}
         &middot;
         {{#linkTo "bookmarks.edit" item}}edit{{/linkTo}}
+        &middot;
+        <button {{action 'remove' item}}>delete</button>
         {{#if item.tags}}
           &middot; {{item.tags}}
         {{/if}}
