@@ -6,6 +6,11 @@
     LOG_ACTIVE_GENERATION: true
   });
 
+  Ember.RSVP.configure('onerror', function(e) {
+    console.log(e.message);
+    console.log(e.stack);
+  });
+
   // if (window.location.hash.match(/#access_token=.+/)) {
   App.deferReadiness();
   // }

@@ -100,6 +100,7 @@ RemoteStorage.defineModule('bookmarks', function(privateClient, publicClient) {
 
         return privateClient.storeObject("archive-bookmark", path, bookmark).
           then(function() {
+            console.log(bookmark.id);
             return bookmark;
           });
       },

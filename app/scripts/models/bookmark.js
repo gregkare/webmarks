@@ -35,7 +35,7 @@ App.Bookmark.adapter = Ember.Adapter.create({
   },
 
   didCreateRecord: function(record, data) {
-    record.load(data[id], data);
+    record.load(data.id, data);
     record.didCreateRecord();
   },
 

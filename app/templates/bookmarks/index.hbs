@@ -13,9 +13,12 @@
       <p class="meta">
         <span class="domain">{{item.domain}}<span>
         &middot;
-        <span class="date"> {{item.createdAt}}<span>
+        <span class="date">{{item.createdAt}}<span>
         &middot;
-        {{#if item.tags}}<p>{{item.tags}}</p>{{/if}}
+        {{item.id}}
+        {{#if item.tags}}
+          &middot; {{item.tags}}
+        {{/if}}
       </p>
       {{#if item.description}}<p class="description">{{item.description}}</p>{{/if}}
     </div>

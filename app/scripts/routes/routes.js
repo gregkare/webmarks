@@ -26,16 +26,5 @@ App.BookmarksNewRoute = Ember.Route.extend({
 
   model: function() {
     return App.Bookmark.create();
-  },
-
-  setupController: function(controller, model){
-    controller.set('content', model);
-  },
-
-  // deactivate: function() {
-  //   var model = this.get('controller.model');
-  //   if (!model.get('isSaving')) {
-  //     model.deleteRecord();
-  //   }
-  // }
+  }
 });
