@@ -71,7 +71,6 @@ App.initializer({
 
     archiveClient.on('change', function(event){
       if (!event.origin.match(/remote/)) { return; }
-      if (event.relativePath === '') { return; }
       var item;
 
       // New object coming in from remote
