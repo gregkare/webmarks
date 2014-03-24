@@ -5041,7 +5041,10 @@ Math.uuid = function (len, radix) {
           // See if there are any more tasks that are not refresh tasks
           if (!this.hasTasks() || this.stopped) {
             RemoteStorage.log('sync is done! reschedule?', Object.getOwnPropertyNames(this._tasks).length, this.stopped);
-            this._emit('done');
+            if (!this.done) {
+              this.done = true;
+              this._emit('done');
+            }
           } else {
             // Use a 10ms timeout to let the JavaScript runtime catch its breath
             // (and hopefully force an IndexedDB auto-commit?), and also to cause
@@ -5130,6 +5133,7 @@ Math.uuid = function (len, radix) {
      **/
     sync: function() {
       var promise = promising();
+      this.done = false;
 
       if (!this.doTasks()) {
         return this.collectTasks().then(function() {
@@ -5203,6 +5207,9 @@ Math.uuid = function (len, radix) {
     this.sync.on('done', function() {
       RemoteStorage.log('Sync done. Setting timer to', this.getSyncInterval());
       if (!this.sync.stopped) {
+        if (this._syncTimer) {
+          clearTimeout(this._syncTimer);
+        }
         this._syncTimer = setTimeout(this.sync.sync.bind(this.sync), this.getSyncInterval());
       }
     }.bind(this));
