@@ -3873,7 +3873,7 @@ Math.uuid = function (len, radix) {
         strategy = 'FLUSH';
       } else if (strategy === undefined) {
         strategy = 'ALL';
-      } else if (strategy) {
+      } else if (typeof(strategy) !== 'string') {
         deprecate('that caching strategy is deprecated, please use <"ALL"> instead');
         strategy = 'ALL';
       }
@@ -3884,6 +3884,7 @@ Math.uuid = function (len, radix) {
             + '["FLUSH", "SEEN", "ALL"]';
       }
       this.storage.caching.set(this.makePath(path), strategy);
+      return this;
     },
 
     flush: function(path) {
@@ -4820,9 +4821,9 @@ Math.uuid = function (len, radix) {
         var missingChildren = {};
         var node = nodes[path];
 
-        collectMissingChildren = function(nodeSet) {
-          if (nodeSet && nodeSet.itemsMap) {
-            for (var itemName in nodeSet.itemsMap) {
+        collectMissingChildren = function(folder) {
+          if (folder && folder.itemsMap) {
+            for (var itemName in folder.itemsMap) {
               if (!bodyOrItemsMap[itemName]) {
                 missingChildren[itemName] = true;
               }
@@ -4836,6 +4837,7 @@ Math.uuid = function (len, radix) {
             path: path,
             common: {}
           };
+          nodes[path] = node;
         }
 
         node.remote = {
@@ -4857,7 +4859,7 @@ Math.uuid = function (len, radix) {
           node.remote.contentType = contentType;
         }
 
-        node = this.autoMerge(node);
+        nodes[path] = this.autoMerge(node);
 
         return {
           toBeSaved:       nodes,
@@ -4887,7 +4889,7 @@ Math.uuid = function (len, radix) {
             };
           }
 
-          node = this.autoMerge(node);
+          nodes[path] = this.autoMerge(node);
         } else {
           node.common = {
             revision:  revision,
